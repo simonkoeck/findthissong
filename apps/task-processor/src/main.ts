@@ -19,8 +19,8 @@ queue.process(async function (job, done) {
   const { userId, type, reelUrl } = data;
   if (type == 'DETECT_SONG_FROM_DMS') {
     console.log('Processing job ' + job.id);
+    const id = Math.random().toString(36).substring(2, 15);
     try {
-      const id = Math.random().toString(36).substring(2, 15);
       mkdirSync('uploads/' + id);
       const filePath = `uploads/${id}/download.mp4`;
       await downloadFile(reelUrl, filePath);
@@ -53,10 +53,6 @@ queue.process(async function (job, done) {
       await sendMessage(userId, {
         text: data.track.title + ' by ' + data.track.subtitle,
       });
-
-      // clean up files
-      if (existsSync('uploads/' + id))
-        rmSync('uploads/' + id, { recursive: true });
     } catch (e) {
       console.error(e);
       try {
@@ -66,6 +62,10 @@ queue.process(async function (job, done) {
       } catch {
         return done();
       }
+    } finally {
+      // clean up files
+      if (existsSync('uploads/' + id))
+        rmSync('uploads/' + id, { recursive: true });
     }
 
     console.log('Job ' + job.id + ' completed');
