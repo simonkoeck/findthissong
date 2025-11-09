@@ -57,7 +57,7 @@ queue.process(async function (job, done) {
       console.error(e);
       try {
         await sendMessage(userId, {
-          text: '🎶❌🫤 Something went wrong. Try again later 😞',
+          text: '🎶❌🫤 Something went wrong. Try again later... 😞',
         });
       } catch {
         return done();
