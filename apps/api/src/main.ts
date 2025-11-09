@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/healthcheck', (_, res) => {
-  res.status(200).send('PONG');
+  res.status(200).send('ok');
 });
 
 app.get('/webhook', (req, res) => {
