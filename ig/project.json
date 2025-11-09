@@ -1,0 +1,9 @@
+{
+  "name": "ig",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ig/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ig --web",
+  "targets": {}
+}
